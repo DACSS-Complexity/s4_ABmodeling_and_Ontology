@@ -554,8 +554,11 @@ Locating an agent does not yet specify the institutional and material conditions
 
 \textbf{Recursivity belongs to dynamics.} The course representation is:
 \begin{fitdisplay}
-\boxed{(A_1-A_3-A_2)_t\xrightarrow{\text{practice}}
-(A'_1-A'_3-A'_2)_{t+1}}
+\boxed{
+\mathcal C(A_1,A_2,A_3)_t
+\xrightarrow{\text{practice}}
+\mathcal C'(A_1',A_2',A_3')_{t+1}
+}
 \end{fitdisplay}
 The primes allow reproduction or transformation; they do not require any element or relation to change. The resulting configuration conditions subsequent practice. $A_4$ describes how things are arranged at each time; the flowchart specifies how practice and other processes unfold and update those arrangements. The transition is not an additional A4 relation class.
 
@@ -611,7 +614,7 @@ Below the name, distinguish two compartments:
 \node[box,text width=7cm,align=left] {
 \centering\stereo{agent}\\\textbf{Driver}\par
 \raggedright\rule{7cm}{.3pt}\\
-\textit{State}\\position\\speed\\perceived color\\
+\textit{State}\\position\\speed\\perceived\_color\\
 \rule{7cm}{.3pt}\\
 \textit{Capabilities}\\\texttt{seeColor()}\\\texttt{adjustSpeed()}
 };
@@ -653,9 +656,13 @@ Now add a Traffic light box, with its own state and capabilities. If a driver's 
 \end{center}
 {\small\textbf{Figure 3. Connecting two LUL boxes.} The line provides a pathway between Driver and Traffic light; it does not specify an action or imply mutual effects. This fragment illustrates the notation, not a complete traffic ontology.}
 
-For this fragment, describe the relevant method in plain language: \texttt{seeColor()} reads the connected light's color (red, orange, or green) and updates the driver's perceived color. The connection is necessary; the method defines the reading and its conditions. How \texttt{adjustSpeed()} uses that information requires its own specification.
+For this fragment, describe the relevant method in plain language: \texttt{seeColor()} uses the pipeline to obtain the connected light's color (red, orange, or green) through \texttt{provideColor()} and updates the driver's perceived color. The connection provides access; the method specifies the reading and its conditions. How \texttt{adjustSpeed()} uses that information to update speed requires its own specification.
 
-LUL makes the ontology explicit: boxes identify the represented elements, their states, and their capabilities; connections provide the pathways their methods can use to read or affect states.
+Notice that $A_2$ is not explicitly represented, as in our Rock--Paper--Scissors example. This is a partial ontology focused on the Driver--Traffic light pipeline. If location matters, specify its spatial reference or acknowledge an Arena supplied by the implementation, such as NetLogo's patch grid. An implementation-provided space makes the Arena implicit; it does not remove the need to document it.
+
+The driver's \texttt{position} therefore exposes an unfinished specification: its spatial reference, initial value, and movement process have not been defined here. Changing speed does not automatically update position, and adding an Arena box alone would not supply that update. Position is \textbf{underspecified}, rather than inherently non-computable. Retain it as a construction question to resolve when movement is introduced, or omit it if the inquiry concerns only signal observation and speed adjustment.
+
+LUL makes the ontology explicit: boxes identify the represented elements, their states, and their capabilities; connections provide the pipelines their methods can use to read or affect states. Reading the diagram also helps expose missing specifications before constructing the processes.
 
 \clearpage
 \section{Progressive Ontologies: From I-ABM to P-ABM}
@@ -797,14 +804,14 @@ P-ABM & Justify representation for the intervention question. & Support conditio
 \subsubsection{Moving toward policy use}
 Three questions become progressively important:
 \begin{enumerate}
-\item Is agency adequately situated and empirically specified?
+\item Is agency specified appropriately for the decision question, distinguishing empirical knowledge from assumptions introduced for exploration?
 \item Which material and institutional conditions require explicit representation?
 \item Are the assumptions and experiments defensible for the intended claim?
 \end{enumerate}
 
 \begin{fitdisplay}
 \text{Generative exploration}
-\xrightarrow{\text{policy purpose and additional evidential requirements}}
+\xrightarrow{\text{decision purpose and evidence appropriate to the claim}}
 P\text{-ABM}.
 \end{fitdisplay}
 A project may remain exploratory or begin from a policy question. Cioffi-inspired re-specification can revise agents, arena, Artificiality, and their arrangement throughout either path. The transition toward policy use does not eliminate generativity; it increases the need to justify the model's situatedness and the claims drawn from it.
@@ -812,7 +819,7 @@ A project may remain exploratory or begin from a policy question. Cioffi-inspire
 \subsection{P-ABM --- Policy ABM}
 
 \begin{principle}{A professional direction for the skills developed here}
-We propose P-ABM as an increasingly valuable laboratory for professional anticipation, participation, and creativity. Decisions proceed amid uncertainty and competing agendas; parsimonious models can make proposed arrangements and their consequences open to examination. Their usefulness depends on the question they help address, without requiring a representation of society in its entirety or a certain prediction of its future.
+We propose P-ABM as an increasingly valuable laboratory for professional anticipation, participation, and creativity. Decisions proceed amid uncertainty and competing agendas; parsimonious models can make proposed arrangements and their consequences open to examination. Their usefulness depends on the question they help address, without requiring a representation of society in its entirety or a certain prediction of its future. Learning to construct an effective abstraction---an ontology and processes focused on that question---is central to this professional contribution.
 
 In this course, students construct I-ABMs to develop and test intuition. P-ABM shows where those skills can lead: consulting, policy analysis, organizational planning, and strategic decision support. The five propositions below express our course framing, developed in conversation with Gilbert et al. and Polhill et al.
 \end{principle}
@@ -821,7 +828,7 @@ In this course, students construct I-ABMs to develop and test intuition. P-ABM s
 
 Our ambition is for P-ABM to become progressively more central to policy analysis and decision support. Explicit agents and interactions let us investigate how an intervention operates through those expected to enact it, including adaptation, uneven effects, and unintended consequences. ABM develops alongside system dynamics, discrete-event simulation, statistical analysis, and other approaches. Choose or combine tools according to what the decision needs; demonstrate what explicit agency contributes \cite{axtell_why_2000-1}.
 
-The practical case is encouraging: models can support policy design, appraisal, evaluation, learning, and communication, as illustrated by Gilbert et al.'s applications \cite[paras.~2.2--2.11, sec.~4]{gilbert_policy_2018}. Polhill et al. strengthen the question of what counts as useful anticipation, including the exclusion of consequential outcomes \cite[paras.~1.5--1.7, 2.6--2.8]{polhill_prediction_2021}. Neither contribution establishes ABM's universal superiority. Greater centrality is a professional goal to earn through useful work.
+The practical case is encouraging: models can support policy design, appraisal, evaluation, learning, and communication, as illustrated by Gilbert et al.'s applications \cite[paras.~2.2--2.11, sec.~4]{gilbert_policy_2018}. Polhill et al. strengthen the question of what counts as useful anticipation, including the exclusion of consequential outcomes \cite[paras.~1.5--1.7, 2.6--2.8]{polhill_prediction_2021}. Greater centrality is a professional goal to earn through useful work and complementarity with other tools.
 
 Feasibility expands as computational tools and methods develop. Applications linking spatial data, institutional rules, and environmental processes illustrate possibilities beyond elementary demonstrations \cite[sec.~4]{gilbert_policy_2018}. Resources still constrain implementations: a model that runs once may be too costly to explore across many initial conditions, assumptions, schedules, and replications. The rapid growth of these search spaces qualifies claims that simulation can explore every alternative \cite[paras.~2.12, 2.23--2.24, 2.29--2.31]{polhill_prediction_2021}.
 
@@ -835,7 +842,7 @@ ABM's actors, states, rules, and connections can provide an accessible basis for
 
 Participation also supplies knowledge and exposes disagreement. Both collaborative policy modeling and stakeholder-informed scenarios support this role \cite[paras.~5.18--5.22]{gilbert_policy_2018}\cite[para.~3.10]{polhill_prediction_2021}. A tension remains when the intended claim concerns transformation of the system itself: novel actors, actions, or institutions may exceed the current representation \cite[paras.~2.44, 3.9]{polhill_prediction_2021}. We address that concern in relation to the particular claim, rather than requiring every useful model to generate all possible novelty.
 
-Decision-makers retain responsibility for navigating the wider political and institutional setting. Modelers and users jointly identify which contextual conditions to represent, vary as scenarios, or state as limits.
+In our course framing, \textbf{problem definition involves discussion of wicked problems; solutions draw on science but also require political judgment, negotiation, and action.} Decision-makers retain responsibility for navigating the wider political and institutional setting. Modelers and users jointly identify which contextual conditions to represent, vary as scenarios, or state as limits.
 
 \subsubsection{WHAT IF as a professional purpose}
 
@@ -853,7 +860,11 @@ The client may provide strategically valuable information unavailable publicly: 
 
 P-ABM can explore material and social Artificiality that does not yet exist: proposed infrastructure, technology, rules, roles, and authority arrangements. An invented $A_3$ is a design hypothesis. Represent its relevant capabilities, constraints, resource requirements, and connections, then specify how agents can access and respond to it. A complete technical or institutional design need not precede that exploration.
 
-P-ABM can therefore remain parsimonious. The decision purpose distinguishes it from I-ABM; greater detail is not compulsory. Axelrod's aid to intuition and principle of simplicity remain relevant, alongside the case for purpose-appropriate abstraction in professional modeling \cite{axelrod_complexity_1997}\cite[paras.~5.7--5.10]{gilbert_policy_2018}.
+\begin{principle}{Preserve explanatory strength through parsimony}
+P-ABM can remain parsimonious. The decision purpose distinguishes it from I-ABM; greater detail is not compulsory. KISS helps us trace how interactions generate aggregate patterns. As detail increases, can we still identify which mechanisms drive the results and their policy implications? Add detail when it improves the investigation of the decision, and assess what that addition contributes.
+
+An effective abstraction keeps relevant agents, conditions, and processes explicit while making their consequences understandable. Axelrod's aid to intuition and principle of simplicity remain relevant, alongside the case for purpose-appropriate abstraction in professional modeling \cite{axelrod_complexity_1997}\cite[paras.~5.7--5.10]{gilbert_policy_2018}.
+\end{principle}
 
 An ABM can function as an experimental laboratory without empirical calibration: its runs reveal consequences of specified assumptions. Gilbert et al. argue that missing data should not automatically prevent modeling, including work that clarifies theory or identifies data needs \cite[paras.~4.4, 5.11--5.17]{gilbert_policy_2018}. Polhill et al. identify the corresponding limit: absent information about novel states cannot be recovered simply by running more simulations \cite[paras.~2.41--2.42]{polhill_prediction_2021}. The laboratory remains useful for creative exploration; its empirical applicability is a further question.
 
@@ -869,7 +880,7 @@ Policy and organizational decisions proceed with or without models. Problems, de
 
 Policymaking is not a wholly scientific endeavor. Values, political agendas, negotiation, authority, and responsibility for implementation matter. A model can make competing political bets more inspectable: what must hold, whose responses matter, which resources are needed, and where the proposal might fail. It contributes information and structured deliberation rather than delivering the final decision \cite[para.~2.13]{gilbert_policy_2018}.
 
-Usefulness depends on what matters to the users, while communication must preserve the uncertainties relevant to their decisions \cite[paras.~1.5--1.7, 3.10]{polhill_prediction_2021}\cite[para.~5.26]{gilbert_policy_2018}. Match the claim to the investigation: an outcome absent from sampled runs is not necessarily impossible, and agreement among alternative models is not automatically an empirical probability. How much evidence is sufficient for a particular action remains a question to work through in light of its purpose and consequences.
+No computational model is free of assumptions and limitations. The practical question is what it helps decision-makers learn about the alternatives before them. Usefulness depends on what matters to the users, while communication must preserve the uncertainties relevant to their decisions \cite[paras.~1.5--1.7, 3.10]{polhill_prediction_2021}\cite[para.~5.26]{gilbert_policy_2018}. Match the claim to the investigation: an outcome absent from sampled runs is not necessarily impossible, and agreement among alternative models is not automatically an empirical probability. How much evidence is sufficient for a particular action remains a question to work through in light of its purpose and consequences.
 
 \begin{principle}{The professional promise of P-ABM}
 Help a client ask a better question, make assumptions explicit, explore consequential alternatives, and identify what action or further inquiry the findings support. Keep the model as simple as that task permits. Explain what was learned, what remains hypothetical, and what would justify revising the advice.
@@ -983,41 +994,61 @@ If practice can change a connection, an institutional prescription, or an agent'
 
 \section{Ex Post: Writing the Model Document}
 
+\subsection{Why document: auditability, reproducibility, and curation}
+
+A model becomes a reusable contribution when others can understand what was built, examine its assumptions, recover its results, and continue the work. Code, diagrams, and selected plots each supply only part of that account. Documentation connects them to the question and to the model version investigated.
+
+\begin{description}[style=nextline,leftmargin=0pt,labelindent=0pt,labelsep=0pt,labelwidth=0pt,itemindent=0pt,itemsep=5pt]
+\item[Auditability] Make it possible to follow a claim through the reported results and experiments to the assumptions, processes, and implementation that produced it.
+\item[Reproducibility] Record the code, inputs, settings, software environment, random-seed procedure, and analysis steps needed to recover the reported results, including the expected variation in stochastic runs.
+\item[Curation] Preserve an identifiable, usable version of the work: organize the source, data provenance, run configurations, outputs, and documentation; record changes, authorship, access conditions, and instructions for future users. Curation makes later comparison, correction, and reuse possible.
+\end{description}
+
+Documentation begins during construction. Ex post, reconcile that evolving record with what was actually implemented and tested. A deliberately simple I-ABM needs this account too: parsimony reduces what must be documented, not the need to document it.
+
+\subsection{ODD as the main documentation reference}
+
+We adopt \textbf{ODD---Overview, Design concepts, and Details---as our main reference for model description}, using Grimm et al.'s 2020 update \cite{grimm_odd_2020}. Its seven elements are: purpose and patterns; entities, state variables and scales; process overview and scheduling; design concepts; initialization; input data; and submodels. The common structure helps readers locate, compare, and reconstruct model specifications.
+
+ODD is especially useful for our ex-post task because it connects a specific model version to its purpose, evaluation patterns, and design rationale. The updated guidance links purpose to the study's main results and calls attention to relevant patterns the model fails to reproduce. It can also guide construction; it is not restricted to work after simulation \cite{grimm_odd_2020}.
+
+\textbf{Distinguish the model description from the full study report.} ODD does not replace reporting computational experiments and results. Our ex-post document requires both: an ODD description of the model and an account of what its use revealed. Use ODD as the organizing reference and supplement it only where the study report requires information not already supplied there.
+
+\subsubsection{ODD: reading the guidance and checklists}
+
+Use this compact table alongside \emph{S1: ODD Guidance and Checklists}, the supplement to Grimm et al. (2020) \cite{grimm_odd_2020}. Retain the seven numbered elements in the model description. The eleven entries under Element 4 are design concepts, not additional numbered elements. Consult S1 for the full guidance, checklists, and examples.
+
 \begin{center}
 \begingroup\small
 \renewcommand{\arraystretch}{1.15}
-\begin{tabularx}{\linewidth}{@{}P{1.8cm}P{5.2cm}Y@{}}
+\begin{tabularx}{\linewidth}{@{}P{5.7cm}Y@{}}
 \toprule
-\multicolumn{3}{@{}l@{}}{\textbf{ODD+D: compact reading template (adapted from M\"uller et al., 2013)}}\\
-\multicolumn{3}{@{}p{\linewidth}@{}}{Grimm et al. (2020) updates ODD; ODD+D extends it for decision-making. This table summarizes the extension, not the full questionnaire.}\\
+\textbf{ODD element or design concept} & \textbf{Information to locate or supply}\\
 \midrule
-\textbf{Part} & \textbf{Template element} & \textbf{Information to locate or supply}\\
+\textbf{1. Purpose and patterns} & Specific purpose and patterns used to assess suitability for that purpose.\\
+\textbf{2. Entities, state variables, and scales} & Represented entities, their states, and spatial and temporal scales.\\
+\textbf{3. Process overview and scheduling} & Which entities do what, when, and in what order; timing of state updates.\\
 \midrule
-Overview & i. Purpose & Question and intended users.\\
- & ii. Entities, state variables and scales & Entities, attributes, external drivers, space and time.\\
- & iii. Process overview and scheduling & Activities and execution order.\\
+\textbf{4. Design concepts} & How the following concepts enter the model.\\
+\quad Basic principles & Underlying theories, assumptions, and modeling approach.\\
+\quad Emergence & Outcomes arising from interactions versus imposed behavior.\\
+\quad Adaptation & How agents adjust behavior to their conditions.\\
+\quad Objectives & Criteria guiding adaptive choices, where represented.\\
+\quad Learning & How experience changes adaptive behavior.\\
+\quad Prediction & How agents anticipate future conditions or consequences.\\
+\quad Sensing & Information available to agents and how they obtain it.\\
+\quad Interaction & Direct and indirect effects among entities.\\
+\quad Stochasticity & Random processes and their role.\\
+\quad Collectives & Groups, their formation, and their representation.\\
+\quad Observation & Outputs collected and how they are recorded for analysis.\\
 \midrule
-Design concepts & i. Theoretical and empirical background & Grounds for assumptions and decisions.\\
- & ii. Individual decision-making & Objectives, choices, adaptation, norms and uncertainty.\\
- & iii. Learning & Changes through individual or collective experience.\\
- & iv. Individual sensing & Accessible information, errors and costs.\\
- & v. Individual prediction & Agents' expectations and forecasting mechanisms.\\
- & vi. Interaction & Dependencies, communication and coordination.\\
- & vii. Collectives & Groups and their representation.\\
- & viii. Heterogeneity & Differences in agents and decisions.\\
- & ix. Stochasticity & Sources of randomness.\\
- & x. Observation & Recorded outputs and emergent patterns.\\
-\midrule
-Details & i. Implementation details & Software and code access.\\
- & ii. Initialisation & Starting conditions and their justification.\\
- & iii. Input data & External inputs during execution.\\
- & iv. Submodels & Mechanisms, parameters, rationale and tests.\\
+\textbf{5. Initialization} & Initial entities, states, and their assignment procedures.\\
+\textbf{6. Input data} & External data or drivers supplied during a run.\\
+\textbf{7. Submodels} & Process rules, parameters, rationale, and results of submodel calibration, testing, and exploration.\\
 \bottomrule
-\multicolumn{3}{@{}p{\linewidth}@{}}{\footnotesize Sources: \href{https://doi.org/10.1016/j.envsoft.2013.06.003}{M\"uller et al. (2013), Table 1}; compare \href{https://doi.org/10.18564/jasss.4259}{Grimm et al. (2020), Figure 1}.}\\
 \end{tabularx}
 \endgroup
 \end{center}
-
 
 The ex-post document answers:
 \begin{fitdisplay}
@@ -1027,124 +1058,58 @@ The ex-post document answers:
 \end{gathered}}
 \end{fitdisplay}
 
-Write a document with the six parts below. Use the ontology and flowcharts developed during construction, but update them to describe the model version actually assessed. Include tables, diagrams, results, and references where they make the specification and evidence explicit. This organization is a course documentation guide.
+Place the LUL and flowcharts within the relevant ODD elements, and cross-reference the exploration, calibration, and tests already documented there. Where needed, supplement that account with the experiments actually conducted, their settings and replications, and the findings and limitations supporting each claim. Link the reported results to the assessed model version, saved outputs, and analysis procedures so readers can recover them without duplicating the ODD description.
 
-All ABMs require an auditable account. A P-ABM additionally requires evidence and a decision context supporting its proposed use. Documentation can begin during construction; the ex-post task is to reconcile the account with what was built and investigated.
+\subsubsection{Version control, preregistration, and preprints}
 
-\subsection{Part 1: Purpose, Question, and Scope}
+\textbf{Version control.} Use Git to track changes to code, ODD, diagrams, and analysis scripts; GitHub is one platform for hosting and collaborating on Git repositories. Associate reported experiments with a specific commit or release, so a later revision cannot silently replace the model that produced a finding. Keep a readable change history and a README explaining how to run the model. A repository complements ODD; it does not replace the model description. See \href{https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases}{GitHub's release documentation} for identifying and distributing versions.
 
-Open with the phenomenon and the question the model investigates. State whether the purpose is generative exploration, support for an intervention decision, or both. Identify the population, setting, and time horizon to which the inquiry applies.
+\textbf{Preregistration.} An open-science workflow can include a dated plan deposited in a registry such as the Open Science Framework (OSF). Before the planned tests, specify the model version, questions, parameter ranges, outcomes, replication strategy, and analysis criteria. Disclose prior exploration and report deviations from the plan. Exploratory I-ABM development remains legitimate: distinguish discoveries made during exploration from subsequent tests of those discoveries. Preregistration makes that distinction visible; it does not establish model validity. See the \href{https://www.cos.io/initiatives/prereg}{Center for Open Science's preregistration guidance}.
 
-Write the question precisely enough that the reader can recognize an answer. Name the outcomes of interest and explain why they matter. State what lies outside the model's scope. For P-ABM, identify the intended decision-maker and the intervention alternatives from the beginning.
-
-\textbf{Include:} a purpose statement, the modeling question, the scope, and definitions of the outcomes to be examined.
-
-\subsection{Part 2: Model Specification}
-
-Describe the model that produced the reported results. Begin with its version identifier and present the LUL diagram and flowcharts that correspond to that version.
-
-\begin{description}[style=nextline,leftmargin=0pt,labelindent=0pt,labelsep=0pt,labelwidth=0pt,itemindent=0pt,itemsep=5pt]
-\item[Elements and states] Identify the represented Agents, Arena, and material and social Artificiality. Define their state variables, possible values, units where relevant, and which attributes remain fixed.
-\item[Connections] Show the Array. Individual links may remain unlabeled, but explain which methods use each pathway and which states they read or affect. Specify joint conditions when a method depends on several connected elements. Distinguish location from situated agency.
-\item[Methods and processes] Explain each method's inputs, conditions, decisions, and updates. Supply formulas or precise rules where a verbal description leaves more than one interpretation.
-\item[Initialization and time] State how elements and connections are created, how initial values are assigned, and how activation, scheduling, time steps, and termination work. Identify any processes that reproduce or transform elements or relations during a run.
-\end{description}
-
-\textbf{Include:} the diagrams, a state-variable table, method descriptions, and initialization and scheduling rules. Reference the corresponding implementation files so the reader can follow the specification into the executable model.
-
-For the traffic fragment, ``reduce speed'' names an operation but does not fully specify it. The document must state how much speed is reduced, when the update occurs, and how negative speed is prevented. Similarly, specify the positive speed assigned when a stopped driver resumes. These details complete the documented mechanism without adding boxes merely to describe programming syntax.
-
-\subsection{Part 3: Assumptions and Supporting Evidence}
-
-Make the grounds for the specification visible. Distinguish choices supported by readings or observations from course conventions, simplifying assumptions, and quantities chosen for exploration.
-
-For each consequential assumption, record:
-\begin{itemize}
-\item what is assumed and where it enters the model;
-\item why it is needed for the question;
-\item its source or rationale;
-\item the uncertainty or plausible alternatives that remain.
-\end{itemize}
-
-\textbf{Include:} an assumption-and-evidence table. For empirical inputs, document provenance, measurement, transformations, and parameter estimation. Separate evidence used to construct or calibrate the model from evidence used to assess its adequacy. If the same evidence serves both purposes, disclose that limitation.
-
-For example, automatic compliance in the traffic exercise is a declared simplification. A policy claim about enforcement would require justification for the represented compliance behavior and an assessment of plausible alternatives.
-
-\subsection{Part 4: Computational Experiments}
-
-Describe what was done with the specified model. Give each experiment an identifier and a question. Record the baseline, varied settings, initial conditions, run length, output measures, and observation times. For stochastic experiments, report the replication count and seed procedure.
-
-\textbf{Include:} an experiment table with one row per design or configuration, plus references to the run settings, outputs, and analysis files. Record software versions and dependencies needed to rerun the work. Explain how to recover the reported tables and figures from the saved outputs.
-
-Use the following distinctions when writing the experiment table:
-\begin{description}[style=nextline,leftmargin=0pt,labelindent=0pt,labelsep=0pt,labelwidth=0pt,itemindent=0pt,itemsep=5pt]
-\item[Replications] Repeat a specification and settings to characterize stochastic variation. State how randomness varies between runs. Repeating an identical deterministic run does not characterize uncertainty.
-\item[Parameter sweeps] List the values or ranges explored and how combinations were selected. State how many replications were used at each setting.
-\item[Scenarios] Define each intervention and its accompanying conditions. Identify what changes relative to the baseline: prescriptions, artifacts, access, authority, initial conditions, or process rules. Distinguish an intervention within a fixed specification from a revision of the model itself.
-\end{description}
-
-If using notation, define it alongside the experiment:
-\begin{fitdisplay}
-M+I_0+\theta_j+\omega_r\rightarrow T_{jr}.
-\end{fitdisplay}
-Here $M$ is the model specification, $I_0$ the initial conditions, $\theta_j$ the parameter setting, $\omega_r$ the stochastic realization, and $T_{jr}$ the resulting trajectory. Record any variation in initial conditions explicitly. The settings and replication count describe the evidence actually generated, not every possible behavior of the model.
-
-\subsection{Part 5: Results and Assessment}
-
-Present results in the order of the experiment questions. For each table or figure, identify the model version, experiment, settings, measure, units, and aggregation used. Report variation across runs where relevant. Distinguish observations from individual trajectories from patterns supported across experiments.
-
-Then report the checks and analyses supporting interpretation:
-\begin{description}[style=nextline,leftmargin=0pt,labelindent=0pt,labelsep=0pt,labelwidth=0pt,itemindent=0pt,itemsep=5pt]
-\item[Verification: was the specification implemented correctly?] Describe the checks performed and their results. Show that methods use the intended pathways, conditions, and state updates, and that scheduling follows the flowchart. Report unresolved discrepancies.
-\item[Validation: is the model adequate for its purpose and domain?] Identify the evidence and criteria used for comparison, where the model agrees or disagrees, and what those comparisons establish. State limitations when independent evidence is unavailable.
-\item[Sensitivity: what influences the results?] Report how outcomes respond to changes in parameters, initial conditions, or assumptions. Identify consequential dependencies.
-\item[Robustness: which findings persist?] State which conclusions survive plausible alternative specifications or uncertainties and which do not.
-\item[Cross-scenario comparison: what differs between alternatives?] Compare scenarios using common measures and explain the differences supported by the sampled trajectories. Report distributional effects and unintended consequences when relevant to the question.
-\end{description}
-
-\textbf{Include:} the result tables and figures, verification and validation evidence, and the sensitivity, robustness, and scenario comparisons performed. Where relevant, examine thresholds, regime changes, path dependence, extreme outcomes, and conditions of success or failure. State which analyses were not performed and how that limits interpretation.
+\textbf{Preprints and accessible materials.} A preprint can circulate the model description, analyses, and findings for scrutiny before journal peer review. Identify its review status and version, link the corresponding model release and accessible supporting materials, and connect later revisions or publications to the earlier account. For professional work, agree what may be shared publicly and what requires controlled access. Openness should make the work inspectable within those conditions, without exposing confidential inputs.
 
 \begin{principle}{Meta-analysis of simulation evidence}
-In this course, \textbf{meta-analysis of simulation evidence} means assessing the model and the body of evidence produced across its computational experiments. It is broader than statistical meta-analysis of independent empirical studies. In the document, name the actual analyses and report their findings; the umbrella term does not replace them. Exploratory ABMs can benefit from these assessments, while P-ABMs must connect the assessment to their prospective claims.
+In this course, \textbf{meta-analysis of simulation evidence} means assessing the model and the evidence produced across its computational experiments. It is broader than statistical meta-analysis of independent empirical studies. Name the analyses performed and report their findings; the umbrella term does not replace them. This assessment complements the ODD description rather than introducing another model-description protocol.
 \end{principle}
 
-\subsection{Part 6: Claims, Limitations, and Decision Implications}
+\subsection{What P-ABM adds: documenting the professional use}
 
-Answer the question stated in Part 1. Connect each main claim to the results and checks supporting it. State the assumptions, domain, and uncertainties that bound it. A selected run or convenient scenario cannot establish a general policy effect.
+For P-ABM, the auditable model description supports a professional account of what can be done, over which horizons, and under which possible changes to the modeled world. We organize these additions around three questions. They are course guidance for professional use, rather than additional ODD elements.
 
-\textbf{Include:} a claim--evidence--limitation table or an equivalent explicit account. Separate what the model generated, what the assessment supports, and what remains conjectural. Identify further evidence needed before extending the claim.
+\subsubsection{Policy brief: from model findings to proposed action}
 
-\subsubsection{For P-ABM: write conditional prospective claims}
+ODD describes the model; it does not have the purpose or format of a policy brief. A policy brief translates the investigation into a concise account for decision-makers, ending with clear proposed actions: who can act, what they should consider doing, with which resources, and under which conditions. Connect each recommendation to the findings and their limits, while making objectives and trade-offs visible. This builds on the practical orientation to policy use discussed by Gilbert et al. \cite{gilbert_policy_2018}.
 
-A prospective claim need not be a point prediction. Write the conditions under which an intervention changes the distribution or structure of possible outcomes. For example:
-\begin{quote}
-\textbf{Under the stated assumptions and conditions, intervention $P$ changes the distribution of outcome $Y$ in the following ways, compared with the baseline.}
-\end{quote}
-Follow that statement with the estimated differences, uncertainty, and robustness evidence from the actual study. Do not fill the statement with an effect the experiments have not established.
+Recommendations must address the applicable legal frameworks and institutional authority. Identify the relevant jurisdictions, competencies, legislation, and coordination requirements, especially in multilevel government. Distinguish actions available under current arrangements from proposals requiring legislative or institutional change; for the latter, identify that change as a prerequisite. The model's representation of a rule does not itself establish legal authority to act.
 
-\subsubsection{For P-ABM: document the decision context}
+Keep the brief accessible and link it to the technical documentation. Where strategic information is non-public, state how authorized reviewers can scrutinize the evidence. Specify responsibility for implementation, monitoring, and revising the advice. Simulation informs the decision; political judgment, negotiation, and responsibility for action remain with the decision-makers.
 
-To support actionability, report:
-\begin{itemize}
-\item \textbf{Who can act:} the decision-maker, their authority, and what they control.
-\item \textbf{What can be done:} feasible alternatives, the baseline, and resource or implementation constraints.
-\item \textbf{What matters:} objectives, trade-offs, and how benefits and burdens differ across groups.
-\item \textbf{Where the advice holds:} the applicable setting and horizon, remaining uncertainties, and vulnerabilities or failure conditions.
-\end{itemize}
+\subsubsection{The prospective look: recommendations across time horizons}
 
-Simulation informs these judgments; it does not determine whose objectives should prevail. Explain how the evidence bears on the decision and where additional judgment is needed.
+Our earlier discussion of Lyapunov provides a reason to examine stability and sensitivity when interpreting trajectories: small differences in starting conditions may have consequential effects over time. That possibility must be investigated for the model at hand; it does not mean that every ABM is chaotic or that one diagnostic establishes a policy forecast. Recommendations require analysis appropriate to their horizon, including sensitivity, uncertainty, and robustness across plausible conditions. Longer simulation runs alone do not establish longer-term applicability.
 
-
-\subsection{Check the Completed Document}
-
-Use four audit questions before submitting the document:
-\begin{description}[style=nextline,leftmargin=0pt,labelindent=0pt,labelsep=0pt,labelwidth=0pt,itemindent=0pt,itemsep=4pt]
-\item[Transparency] Can the reader identify the assumptions, elements, connections, processes, and experimental choices?
-\item[Traceability] Can each claim be followed back through results and experiments to the implementation and ontology?
-\item[Replicability] Can the specified experiment be rerun and its reported behavior recovered within the appropriate stochastic tolerance?
-\item[Reproducibility] Are the model, data, procedures, and analytical operations sufficiently explicit and available for independent computational scrutiny?
+Define short, medium, and long term for the engagement, distinguishing the decision deadline, implementation time, and horizon of effects:
+\begin{description}[style=nextline,leftmargin=0pt,labelindent=0pt,labelsep=0pt,labelwidth=0pt,itemindent=0pt,itemsep=5pt]
+\item[Short term] Identify actions possible with current authority, resources, and infrastructure, their immediate constraints, and indicators for monitoring their effects.
+\item[Medium term] Examine pilots, staged investments, and coordination or institutional changes. Report which findings persist across plausible assumptions and specify milestones for continuation, revision, or withdrawal.
+\item[Long term] Explore alternative pathways, infrastructure, and institutions, including dependencies and changes that could invalidate present assumptions. Identify options to preserve and conditions under which the model and advice should be revisited.
 \end{description}
-These are course operational definitions; usage of replicability and reproducibility varies across disciplines. For P-ABM, also check that the document connects its evidence to feasible alternatives and a specified decision context. Auditability applies to every ABM; actionability adds requirements for policy use.
+
+Write prospective claims conditionally: under stated assumptions, how does an intervention alter the simulated outcomes relative to a baseline? Report the supporting experiments and uncertainty. As Polhill et al. emphasize, anticipation becomes especially demanding when future conditions include novelty beyond the current representation \cite{polhill_prediction_2021}. A useful recommendation may concern a pilot, further information gathering, or preparation for several futures, rather than a single predicted outcome.
+
+\subsubsection{The reconfiguration of the As: social recursivity and novelty}
+
+Practices may reproduce or transform the conditions of subsequent action. Document whether the model allows changes in agents' expectations and capabilities ($A_1$), environmental conditions ($A_2$), artifacts and institutions ($A_3$), and their arrangement ($A_4$). Explain the mechanisms, conditions, and timescales of these changes, and identify what remains fixed. This extends our situated-agency and social-recursivity discussion into the professional account \cite{knoeri}.
+
+For example, networked infrastructure combines material Artificiality with connections and dependencies; multilevel government combines decision-making actors, institutional prescriptions, and authority relations. GIS layers may describe terrain, infrastructure, or jurisdictions, so classify their content by its modeling role. Where these structures can change, document how methods alter states or connections. Distinguish changes generated within a run from re-specifications introduced by the modeler between scenarios. Invented $A_3$ can open useful possibilities, but its assumed capabilities and requirements must remain explicit.
+
+Here we place \textbf{Axelrod's parsimony and Polhill et al.'s concerns about novelty in productive tension}, as a course comparison rather than a direct dispute between the authors. Axelrod's advice helps us construct understandable models that develop and test intuition \cite{axelrod_complexity_1997}. Polhill et al. ask what happens when relevant future entities, processes, or categories exceed a model's possibilities \cite{polhill_prediction_2021}. A model can change states and connections while still being unable to generate a new kind of institution or action. Document that boundary and assess its importance for the proposed use. We can retain a parsimonious model while making clear which reconfigurations it investigates and which require a new specification.
+
+\begin{principle}{A developing professional frontier}
+The more ambitious forms of P-ABM can depend heavily on advanced mathematical analysis, programming, and computational resources, particularly when investigating many interacting mechanisms and possible futures. Their development expands the scope of what we can attempt; computational limits today need not define the field's eventual possibilities. Faster computation nevertheless does not by itself resolve missing knowledge or justify a recommendation.
+
+For present practice, Axelrod's advice remains a strong foundation: start with an effective abstraction, preserve interpretability, and investigate what the model can teach us. Our ambition extends further as methods and computational capabilities advance. P-ABM can contribute useful work now while opening a path toward more demanding forms of anticipation and decision support.
+\end{principle}
 
 \clearpage
 \section*{References and source boundaries}
@@ -1167,6 +1132,7 @@ The entries below document the works explicitly cited in this guide, including t
 
 \bibitem{axelrod_complexity_1997} Axelrod, R. M. (1997). \emph{The complexity of cooperation: Agent-based models of competition and collaboration}. Princeton, NJ: Princeton University Press. \url{https://doi.org/10.1515/9781400822300}.
 \bibitem{axelrod_dissemination_1997} Axelrod, R. (1997). The dissemination of culture: A model with local convergence and global polarization. \emph{Journal of Conflict Resolution}, 41(2), 203--226. \url{https://doi.org/10.1177/0022002797041002001}.
+\bibitem{grimm_odd_2020} Grimm, V., et al. (2020). The ODD protocol for describing agent-based and other simulation models: A second update to improve clarity, replication, and structural realism. \emph{Journal of Artificial Societies and Social Simulation}, 23(2), 7. \url{https://doi.org/10.18564/jasss.4259}
 \bibitem{gilbert_policy_2018} Gilbert, N., Ahrweiler, P., Barbrook-Johnson, P., Narasimhan, K. P., \& Wilkinson, H. (2018). Computational modelling of public policy: Reflections on practice. \emph{Journal of Artificial Societies and Social Simulation}, 21(1), 14. \url{https://doi.org/10.18564/jasss.3669}
 \bibitem{polhill_prediction_2021} Polhill, J. G., Hare, M., Bauermann, T., Anzola, D., Palmer, E., Salt, D., \& Antosz, P. (2021). Using agent-based models for prediction in complex and wicked systems. \emph{Journal of Artificial Societies and Social Simulation}, 24(3), 2. \url{https://doi.org/10.18564/jasss.4597}
 \end{thebibliography}
